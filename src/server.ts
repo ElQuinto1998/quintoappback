@@ -2,6 +2,8 @@ import express from 'express';
 import morgan from "morgan";
 import cors from 'cors';
 
+import resumeRoutes from './routes/resumes/experiencia.routes'
+
 //Initializations
 const server = express();
 
@@ -18,5 +20,7 @@ server.use(express.json());
 server.get('/', (req, res) => {
     res.send('Hola mundo');
 });
+
+server.use(resumeRoutes);
 
 export default server;

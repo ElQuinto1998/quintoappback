@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const morgan_1 = __importDefault(require("morgan"));
 const cors_1 = __importDefault(require("cors"));
+const experiencia_routes_1 = __importDefault(require("./routes/resumes/experiencia.routes"));
 //Initializations
 const server = express_1.default();
 //Settings
@@ -19,4 +20,5 @@ server.use(express_1.default.json());
 server.get('/', (req, res) => {
     res.send('Hola mundo');
 });
+server.use(experiencia_routes_1.default);
 exports.default = server;
