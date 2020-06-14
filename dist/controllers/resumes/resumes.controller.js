@@ -12,14 +12,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.saveResumes = exports.getResumes = void 0;
-const experiencia_1 = __importDefault(require("../../models/resumes/experiencia"));
+exports.saveResumes = exports.getResumeById = exports.getResumes = void 0;
+const resume_1 = __importDefault(require("../../models/resumes/resume"));
 exports.getResumes = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const experiencias = yield experiencia_1.default.find();
-    res.json(experiencias);
+    const resumes = yield resume_1.default.find();
+    res.json({ data: resumes });
+});
+exports.getResumeById = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const resume = yield resume_1.default.findById(req.params.id);
+    res.status(200).json({ data: resume });
 });
 exports.saveResumes = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const experiencia = new experiencia_1.default(req.body);
-    yield experiencia.save();
-    return res.status(201).json(experiencia);
+    const resume = new resume_1.default(req.body);
+    yield resume.save();
+    return res.status(201).json({ data: resume });
 });
